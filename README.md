@@ -331,3 +331,9 @@ Dependency versions are pinned in `requirements.txt` so the saved `.joblib` mode
 - The phonetic layer covers common transliteration variants only. Transposition typos such as `Madhavan` / `Madhavna` are left to the model and graded **Risky** for manual review.
 - The data is synthetic, so real-world documents (OCR errors, regional scripts) would need extra handling.
 - Critical recall is 0.83: some critical mismatches are graded Risky. Risky items still go to manual review, so they aren't silently accepted.
+
+---
+
+## Author
+
+**Dhanalakshmi B**
