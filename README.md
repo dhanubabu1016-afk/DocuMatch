@@ -14,6 +14,18 @@ It combines two machine-learning models with a rule layer:
 
 ---
 
+## Live demo
+
+| | Link |
+|---|---|
+| **App** | [docu-match-beta.vercel.app](https://docu-match-beta.vercel.app) |
+| **API** | [documatch.onrender.com](https://documatch.onrender.com) |
+| **API docs** | [documatch.onrender.com/docs](https://documatch.onrender.com/docs) |
+
+> The backend runs on Render's free plan and sleeps when idle, so the first request can take up to about 50 seconds. After that it responds normally.
+
+---
+
 ## Screenshots
 
 | Check Documents | Compare Names | Dashboard |
@@ -186,8 +198,8 @@ Fully synthetic Indian identity data.
 
 | Layer | Tools |
 |---|---|
-| Frontend | React, Vite |
-| Backend | FastAPI, Uvicorn, Pydantic |
+| Frontend | React, Vite (deployed on Vercel) |
+| Backend | FastAPI, Uvicorn, Pydantic (deployed on Render) |
 | ML | scikit-learn (Random Forest, Decision Tree), pandas, joblib |
 | Data | Synthetic CSV datasets |
 
@@ -221,7 +233,7 @@ DocuMatch/
 
 ## API
 
-Interactive docs: `http://127.0.0.1:8000/docs`
+Interactive docs: [documatch.onrender.com/docs](https://documatch.onrender.com/docs) (live) or `http://127.0.0.1:8000/docs` (local)
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -234,7 +246,7 @@ Interactive docs: `http://127.0.0.1:8000/docs`
 **Compare names**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/compare-names \
+curl -X POST https://documatch.onrender.com/api/compare-names \
   -H "Content-Type: application/json" \
   -d '{"name_a": "Ritu Mishra", "name_b": "Reetu Mishra"}'
 ```
@@ -258,7 +270,7 @@ curl -X POST http://127.0.0.1:8000/api/compare-names \
 **Check documents**
 
 ```bash
-curl -X POST http://127.0.0.1:8000/api/check-documents \
+curl -X POST https://documatch.onrender.com/api/check-documents \
   -H "Content-Type: application/json" \
   -d '{"documents": [
         {"doc_type": "aadhaar", "name": "Raju Senthil", "dob": "1999-12-02", "gender": "M"},
@@ -297,7 +309,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open `http://localhost:5173`. To point the frontend at a different backend, set `VITE_API_URL` (for example in `frontend/.env`).
 
 ### 3. Retrain the models (optional)
 
@@ -309,10 +321,19 @@ python ml/train.py
 
 ---
 
+## Deployment
+
+| Part | Platform | Settings |
+|---|---|---|
+| Backend | Render (Web Service) | Build: `pip install -r requirements.txt` · Start: `uvicorn backend.main:app --host 0.0.0.0 --port $PORT` · Env: `PYTHON_VERSION=3.14.7` |
+| Frontend | Vercel | Root directory: `frontend` · Env: `VITE_API_URL=https://documatch.onrender.com` |
+
+Dependency versions are pinned in `requirements.txt` so the saved `.joblib` models load with the same scikit-learn version they were trained with.
+
+---
+
 ## Limitations
 
 - The phonetic layer covers common transliteration variants only. Transposition typos such as `Madhavan` / `Madhavna` are left to the model and graded **Risky** for manual review.
 - The data is synthetic, so real-world documents (OCR errors, regional scripts) would need extra handling.
 - Critical recall is 0.83: some critical mismatches are graded Risky. Risky items still go to manual review, so they aren't silently accepted.
-
-
