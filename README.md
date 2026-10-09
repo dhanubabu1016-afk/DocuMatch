@@ -16,15 +16,9 @@ It combines two machine-learning models with a rule layer:
 
 ## Live demo
 
-| | Link |
-|---|---|
-| **App** | [docu-match-beta.vercel.app](https://docu-match-beta.vercel.app) |
-| **API** | [documatch.onrender.com](https://documatch.onrender.com) |
-| **API docs** | [documatch.onrender.com/docs](https://documatch.onrender.com/docs) |
+**[docu-match-beta.vercel.app](https://docu-match-beta.vercel.app)**
 
-> The backend runs on Render's free plan and sleeps when idle, so the first request can take up to about 50 seconds. After that it responds normally.
-
----
+> The first request can take up to about 50 seconds while the server wakes up.
 
 ## Screenshots
 
