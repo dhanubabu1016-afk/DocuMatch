@@ -1,0 +1,128 @@
+{
+  "dataset": {
+    "persons": 5000,
+    "documents": 23829,
+    "name_pairs": 50000,
+    "mismatches": 9012,
+    "doc_types": {
+      "aadhaar": 5000,
+      "pan": 5000,
+      "marksheet_10": 5000,
+      "marksheet_12": 5000,
+      "birth_certificate": 2070,
+      "passport": 1759
+    },
+    "verification_status": {
+      "clean": 3087,
+      "needs_review": 1236,
+      "critical": 677
+    },
+    "severity": {
+      "acceptable": 6752,
+      "risky": 1563,
+      "critical": 697
+    },
+    "mismatch_types": {
+      "case_spacing": 4729,
+      "initial": 2023,
+      "spelling_variant": 1346,
+      "day_shift": 283,
+      "different_address": 217,
+      "year_shift": 159,
+      "different_person": 132,
+      "flipped": 63,
+      "day_month_swap": 60
+    },
+    "pair_types": {
+      "neg_same_given_diff_family": 8843,
+      "neg_sibling_like": 7046,
+      "initial": 6304,
+      "transliteration": 5079,
+      "neg_random": 5071,
+      "neg_confusable_given": 3906,
+      "typo": 3763,
+      "initial_plus_transliteration": 2519,
+      "order_swap": 2453,
+      "case_spacing": 1985,
+      "honorific": 1755,
+      "exact": 1276
+    }
+  },
+  "name_matcher": {
+    "model": "Random Forest (200 trees)",
+    "accuracy": 0.9667,
+    "test_size": 7500,
+    "report": {
+      "0": {
+        "precision": 0.9832214765100671,
+        "recall": 0.9487317862924987,
+        "f1-score": 0.965668772315298,
+        "support": 3706.0
+      },
+      "1": {
+        "precision": 0.9515800203873598,
+        "recall": 0.9841855561412757,
+        "f1-score": 0.9676081886499093,
+        "support": 3794.0
+      },
+      "accuracy": 0.9666666666666667,
+      "macro avg": {
+        "precision": 0.9674007484487135,
+        "recall": 0.9664586712168872,
+        "f1-score": 0.9666384804826036,
+        "support": 7500.0
+      },
+      "weighted avg": {
+        "precision": 0.9672151185727935,
+        "recall": 0.9666666666666667,
+        "f1-score": 0.9666498583917666,
+        "support": 7500.0
+      }
+    },
+    "feature_importance": {
+      "similarity": 0.207,
+      "sorted_similarity": 0.391,
+      "token_overlap": 0.072,
+      "initials_match": 0.284,
+      "length_diff": 0.045
+    }
+  },
+  "severity_classifier": {
+    "model": "CART decision tree (depth 3)",
+    "accuracy": 0.9842,
+    "test_size": 1333,
+    "report": {
+      "acceptable": {
+        "precision": 0.9979777553083923,
+        "recall": 1.0,
+        "f1-score": 0.9989878542510121,
+        "support": 987.0
+      },
+      "critical": {
+        "precision": 0.989010989010989,
+        "recall": 0.8333333333333334,
+        "f1-score": 0.9045226130653267,
+        "support": 108.0
+      },
+      "risky": {
+        "precision": 0.9288537549407114,
+        "recall": 0.9873949579831933,
+        "f1-score": 0.9572301425661914,
+        "support": 238.0
+      },
+      "accuracy": 0.9842460615153789,
+      "macro avg": {
+        "precision": 0.9719474997533643,
+        "recall": 0.9402427637721756,
+        "f1-score": 0.9535802032941767,
+        "support": 1333.0
+      },
+      "weighted avg": {
+        "precision": 0.9849095461203745,
+        "recall": 0.9842460615153789,
+        "f1-score": 0.9838786408758873,
+        "support": 1333.0
+      }
+    }
+  }
+}
