@@ -315,8 +315,4 @@ python ml/train.py
 - The data is synthetic, so real-world documents (OCR errors, regional scripts) would need extra handling.
 - Critical recall is 0.83: some critical mismatches are graded Risky. Risky items still go to manual review, so they aren't silently accepted.
 
----
 
-## Academic context
-
-Built as the ML project for the Machine Learning lab course (21CSC305P). The name features and mismatch features follow Programs 2 and 5.1 of the lab manual.
